@@ -19,7 +19,7 @@ $ npm install -g foam-capture
 $ foam-capture COMMAND
 running command...
 $ foam-capture (-v|--version|version)
-foam-capture/0.0.2 darwin-x64 node-v15.5.0
+foam-capture/0.0.3 darwin-x64 node-v15.5.0
 $ foam-capture --help [COMMAND]
 USAGE
   $ foam-capture COMMAND
@@ -48,7 +48,7 @@ EXAMPLE
   $ foam-capture capture [string-to-capture]
 ```
 
-_See code: [src/commands/capture.ts](https://github.com/anglinb/foam-capture/blob/v0.0.2/src/commands/capture.ts)_
+_See code: [src/commands/capture.ts](https://github.com/anglinb/foam-capture/blob/v0.0.3/src/commands/capture.ts)_
 
 ## `foam-capture help [COMMAND]`
 
