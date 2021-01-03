@@ -12,5 +12,5 @@
   "include": [
     "src/**/*"
   ],
-  "references": [{ "path": "../foam-core" }]
+  "references": [{ "path": "./foam-tsconfig.json" }]
 }

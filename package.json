@@ -1,12 +1,11 @@
 {
-  "name": "foam-cli",
-  "description": "Foam CLI",
-  "version": "0.7.4",
-  "author": "Jani Eväkallio @jevakallio",
+  "name": "foam-capture",
+  "description": "Foam Capture -- An interface to import information into the foam knowledge base.",
+  "version": "0.0.1",
+  "author": "Brian Anglin @anglinb",
   "bin": {
-    "foam": "./bin/run"
+    "foam-capture": "./bin/run"
   },
-  "bugs": "https://github.com/foambubble/foam/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -20,20 +19,23 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@oclif/dev-cli": "^1",
+    "@types/jest": "^26.0.19",
     "@types/node": "^10",
     "babel-jest": "^26.1.0",
     "chai": "^4",
     "eslint": "^5.13",
     "eslint-config-oclif": "^3.1",
     "eslint-config-oclif-typescript": "^0.1",
+    "foam-core": "*",
     "globby": "^10",
     "jest": "^26.1.0",
+    "mkdirp": "^0.5.5",
     "mock-fs": "^4.12.0",
+    "recursive-copy": "^2.0.11",
+    "rimraf": "^3.0.2",
     "ts-node": "^8",
-    "typescript": "^3.3"
-  },
-  "peerDependencies": {
-    "foam-core": "*"
+    "typescript": "^3.3",
+    "uuid4": "^2.0.2"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -44,7 +46,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/foambubble/foam",
+  "homepage": "https://github.com/anglinb/foam-capture",
   "keywords": [
     "oclif"
   ],
@@ -57,13 +59,13 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "foambubble/foam",
+  "repository": "anglinb/foam-capture",
   "scripts": {
     "clean": "rimraf tmp",
     "build": "tsc -b",
     "test": "jest",
     "lint": "echo Missing lint task in CLI package",
-    "cli": "yarn build && ./bin/run",
+    "cli": "yarn build && ./bin/run capture abc --workspace /Users/brian/moonlight/kb",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "version": "oclif-dev readme && git add README.md"
