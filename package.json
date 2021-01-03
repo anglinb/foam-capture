@@ -63,7 +63,7 @@
   "scripts": {
     "readme": "./node_modules/.bin/oclif-dev readme",
     "clean": "rimraf tmp",
-    "build": "tsc -b",
+    "build": "tsc -b --traceResolution",
     "test": "jest",
     "lint": "echo Missing lint task in CLI package",
     "cli": "yarn build && ./bin/run",

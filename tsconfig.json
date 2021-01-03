@@ -10,7 +10,7 @@
     "target": "es2017"
   },
   "include": [
-    "src/**/*"
+    "./src/**/*",
+    "./src/utils/*"
   ],
-  "references": [{ "path": "./foam-tsconfig.json" }]
 }
