@@ -54,18 +54,19 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "foam",
+    "bin": "foam-capture",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
   "repository": "anglinb/foam-capture",
   "scripts": {
+    "readme": "./node_modules/.bin/oclif-dev readme",
     "clean": "rimraf tmp",
     "build": "tsc -b",
     "test": "jest",
     "lint": "echo Missing lint task in CLI package",
-    "cli": "yarn build && ./bin/run capture abc --workspace /Users/brian/moonlight/kb",
+    "cli": "yarn build && ./bin/run",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "version": "oclif-dev readme && git add README.md"

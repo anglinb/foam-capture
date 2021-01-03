@@ -1,12 +1,12 @@
-foam-cli
+foam-capture
 ========
 
-Foam CLI
+Foam Capture Cli
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/foam-cli.svg)](https://npmjs.org/package/foam-cli)
-[![Downloads/week](https://img.shields.io/npm/dw/foam-cli.svg)](https://npmjs.org/package/foam-cli)
-[![License](https://img.shields.io/npm/l/foam-cli.svg)](https://github.com/foambubble/foam/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/foam-capture.svg)](https://npmjs.org/package/foam-capture)
+[![Downloads/week](https://img.shields.io/npm/dw/foam-capture.svg)](https://npmjs.org/package/foam-capture)
+[![License](https://img.shields.io/npm/l/foam-capture.svg)](https://github.com/foambubble/foam/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -15,30 +15,48 @@ Foam CLI
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g foam-cli
-$ foam COMMAND
+$ npm install -g foam-capture
+$ foam-capture COMMAND
 running command...
-$ foam (-v|--version|version)
-foam-cli/0.7.4 darwin-x64 node-v12.18.2
-$ foam --help [COMMAND]
+$ foam-capture (-v|--version|version)
+foam-capture/0.0.1 darwin-x64 node-v15.5.0
+$ foam-capture --help [COMMAND]
 USAGE
-  $ foam COMMAND
+  $ foam-capture COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`foam help [COMMAND]`](#foam-help-command)
-* [`foam janitor [WORKSPACEPATH]`](#foam-janitor-workspacepath)
-* [`foam migrate [WORKSPACEPATH]`](#foam-migrate-workspacepath)
+* [`foam-capture capture [CAPTURESTRING]`](#foam-capture-capture-capturestring)
+* [`foam-capture help [COMMAND]`](#foam-capture-help-command)
 
-## `foam help [COMMAND]`
+## `foam-capture capture [CAPTURESTRING]`
 
-display help for foam
+Captures provided information
 
 ```
 USAGE
-  $ foam help [COMMAND]
+  $ foam-capture capture [CAPTURESTRING]
+
+OPTIONS
+  -h, --help                 show CLI help
+  -s, --workspace=workspace  Where the workspace exists, defaults to ".".
+  -w, --without-extensions   generate link reference definitions without extensions (for legacy support)
+
+EXAMPLE
+  $ foam-capture capture [string-to-capture]
+```
+
+_See code: [src/commands/capture.ts](https://github.com/anglinb/foam-capture/blob/v0.0.1/src/commands/capture.ts)_
+
+## `foam-capture help [COMMAND]`
+
+display help for foam-capture
+
+```
+USAGE
+  $ foam-capture help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -47,49 +65,11 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.1.0/src/commands/help.ts)_
-
-## `foam janitor [WORKSPACEPATH]`
-
-Updates link references and heading across all the markdown files in the given workspaces
-
-```
-USAGE
-  $ foam janitor [WORKSPACEPATH]
-
-OPTIONS
-  -h, --help                show CLI help
-  -w, --without-extensions  generate link reference definitions without extensions (for legacy support)
-
-EXAMPLE
-  $ foam-cli janitor path-to-foam-workspace
-```
-
-_See code: [src/commands/janitor.ts](https://github.com/foambubble/foam/blob/v0.7.4/src/commands/janitor.ts)_
-
-## `foam migrate [WORKSPACEPATH]`
-
-Updates file names, link references and heading across all the markdown files in the given workspaces
-
-```
-USAGE
-  $ foam migrate [WORKSPACEPATH]
-
-OPTIONS
-  -h, --help                show CLI help
-  -w, --without-extensions  generate link reference definitions without extensions (for legacy support)
-
-EXAMPLE
-  $ foam-cli migrate path-to-foam-workspace
-  Successfully generated link references and heading!
-```
-
-_See code: [src/commands/migrate.ts](https://github.com/foambubble/foam/blob/v0.7.4/src/commands/migrate.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.1/src/commands/help.ts)_
 <!-- commandsstop -->
 
 ## Development
 
 - Run `yarn` somewhere in workspace (ideally root, see [yarn workspace docs](https://classic.yarnpkg.com/en/docs/workspaces/)
   - This will automatically symlink all package directories so you're using the local copy
-- In `packages/foam-core`, run `yarn start` to rebuild the library on every change
-- In `packages/foam-cli`, make changes and run with `yarn run cli`. This should use latest workspace manager changes.
+- In `packages/foam-capture`, make changes and run with `yarn run cli`. This should use latest workspace manager changes.
