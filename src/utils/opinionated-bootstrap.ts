@@ -8,12 +8,14 @@ import {
 } from 'foam-core';
 import { isValidDirectory } from '../utils';
 
+type OpinionatedBootstrapOptions = { }
+
 /**
  *
  * @param workspace path to workspace 
  */
 
- export const opinionatedBootstrap = async (workspace: string): Promise<Foam>  => {
+ export const opinionatedBootstrap = async (workspace: string, options?: OpinionatedBootstrapOptions): Promise<Foam>  => {
     if (isValidDirectory(workspace)) {
         const workspaceURI = URI.file(workspace)
         const config = createConfigFromFolders([workspaceURI]);
