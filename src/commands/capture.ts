@@ -14,6 +14,8 @@ import {
 import { writeFileToDisk } from '../utils/write-file-to-disk';
 import { isValidDirectory } from '../utils';
 import { captureToInbox } from '../utils/capture-to-inbox';
+import { cleanupReferences } from '../utils/cleanup-references';
+import { opinionatedBootstrap } from '../utils/opinionated-bootstrap';
 
 export default class Capture extends Command {
     static description =
@@ -43,59 +45,22 @@ export default class Capture extends Command {
   async run() {
     const spinner = ora('Reading Files').start();
 
+    // Parse out the cli arguments
     const { args, flags } = this.parse(Capture);
-
     const { captureString } = args;
- 
     const { workspace = "./" } = flags;
 
-    if (isValidDirectory(workspace)) {
-        const workspaceURI = URI.file(workspace)
-        const config = createConfigFromFolders([workspaceURI]);
-        const services: Services = {
-          dataStore: new FileDataStore(config),
-        };
-        const foam = (await bootstrap(config, services));
-        const graph = foam.notes;
-  
-        const notes = graph.getNotes().filter(Boolean); // removes undefined notes
-  
-        spinner.succeed();
-        spinner.text = `${notes.length} files found`;
-        spinner.succeed();
-
-        await captureToInbox(foam, captureString);
-
-        spinner.text = 'Generating link definitions';
-  
-        const fileWritePromises = notes.map(note => {
-          // Get edits
-          const heading = generateHeading(note);
-          const definitions = generateLinkReferences(
-            note,
-            graph,
-            !flags['without-extensions']
-          );
-  
-          // apply Edits
-          let file = note.source.text;
-          file = heading ? applyTextEdit(file, heading) : file;
-          file = definitions ? applyTextEdit(file, definitions) : file;
-  
-          if (heading || definitions) {
-            return writeFileToDisk(note.source.uri, file);
-          }
-  
-          return Promise.resolve(null);
-        });
-  
-        await Promise.all(fileWritePromises);
-  
-        spinner.succeed();
-        spinner.succeed('Done!');
-
-    } else {
-        spinner.fail('Directory does not exist!');
+    // Create the foam instance and run the steps
+    let foam
+    try{ 
+      foam = await opinionatedBootstrap(workspace)
+    } catch(e){
+      spinner.fail('Directory does not exist!');
+      return 
     }
+    await captureToInbox(foam, captureString);
+    await cleanupReferences(foam, { 'without-extensions': flags['without-extensions']})
+
+    spinner.succeed('Done!');
   }
 }
