@@ -1,7 +1,7 @@
 {
   "name": "foam-capture",
   "description": "Foam Capture -- An interface to import information into the foam knowledge base.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Brian Anglin @anglinb",
   "bin": {
     "foam-capture": "./bin/run"
