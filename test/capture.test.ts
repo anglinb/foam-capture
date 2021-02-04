@@ -10,25 +10,8 @@ import {
   createConfigFromFolders,
   URI
 } from "foam-core";
-import { prepareKnowledgeBase } from './test-utils';
+import { prepareKnowledgeBase, bootstrapFoam, doesFileExist  } from './test-utils';
 import { captureToInbox } from '../src/utils/capture-to-inbox'
-
-const doesFileExist = path =>
-  fs
-    .access(path)
-    .then(() => true)
-    .catch(() => false);
-
-const bootstrapFoam = async (path:string): Promise<Foam> => {
-
-  const workspaceURI = URI.file(path)
-  const config = createConfigFromFolders([workspaceURI]);
-  const services: Services = {
-    dataStore: new FileDataStore(config),
-  };
-  const foam = (await bootstrap(config, services));
-  return foam
-}
 
 describe('capture', () => {
 

@@ -12,6 +12,8 @@
     "@oclif/plugin-help": "^3",
     "foam-core": "^0.7.4",
     "ora": "^4.0.4",
+    "puppeteer": "^5.5.0",
+    "screenshot-tweet": "^1.1.1",
     "tslib": "^1"
   },
   "devDependencies": {
